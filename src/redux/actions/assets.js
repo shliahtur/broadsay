@@ -1,4 +1,4 @@
-import axios from "axios";
+import  apiClient  from '../../utils/apiClient';
 import {
     FETCH_ASSETS_STARTED,
     FETCH_ASSETS_SUCCESS,
@@ -6,9 +6,10 @@ import {
 } from "../constants/assets";
 import { API_URL } from '../../configs/api';
 import { authHeader } from '../../services/auth-header';
+
 export const getAssets = (limit, skip) => (dispatch) => {
     dispatch(fetchAssetsStarted());
-    return axios
+     apiClient
         .get(`${API_URL}/media?$limit=${limit}&$skip=${skip}&$sort[createdAt]=-1`, { headers: authHeader() })
         .then(res => {
             dispatch(fetchAssetsSuccess(res.data));

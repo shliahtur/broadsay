@@ -1,11 +1,11 @@
-import axios from 'axios';
+import  apiClient  from '../utils/apiClient';
 import { API_URL } from '../configs/api';
 
 const strategy = "cognito"
 
 class AuthService {
     login(email, password) {
-        return axios
+        return apiClient
             .post(`${API_URL}/authentication`, { strategy, email, password })
             .then((res) => {
                 if (res.data.accessToken) {
