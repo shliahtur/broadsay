@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import useAssetsFetch from "../hooks/useAssetsFetch";
 import Asset from '../components/Asset';
+import VideoAsset from '../components/VideoAsset';
 import Counter from "../components/Counter";
 
 const AssetList = () => {
@@ -36,9 +37,12 @@ const AssetList = () => {
                                 key={asset._id}
                                 ref={data.length === index + 1 ? lastUserRef : null}
                             >
-                                <Asset
-                                    {...asset}
-                                />
+                                {
+                                    asset.type === 'VIDEO' ?
+                                        <VideoAsset {...asset} /> :
+                                        <Asset {...asset} />
+                                }
+
                             </div>
                         )
                     })

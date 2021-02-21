@@ -1,14 +1,15 @@
 import moment from 'moment';
 import Poster from '../components/Poster';
 
-const Asset = ({ sourceUrl, createdAt, poster, name, playableUrl }) => {
+const Asset = ({ sourceUrl, createdAt, poster, name }) => {
 
     const handleClick = () => {
         window.location.href = sourceUrl
     }
+
     return (
         <div className='asset' onClick={handleClick}>
-            <div className='asset__poster'>
+            <div className='asset__poster'>        
                 <Poster src={poster} alt={name} />
             </div>
             <div className='asset__info'>
