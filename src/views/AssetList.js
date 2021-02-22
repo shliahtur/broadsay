@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import useAssetsFetch from "../hooks/useAssetsFetch";
 import Asset from '../components/Asset';
-import VideoAsset from '../components/VideoAsset';
+import VideoAsset from '../components/VideoAsset/VideoAsset';
 import Counter from "../components/Counter";
 
 const AssetList = () => {

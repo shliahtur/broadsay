@@ -1,8 +1,8 @@
 import moment from 'moment';
-import Poster from '../components/Poster';
+import Poster from '../Poster';
 import PlayButton from './PlayButton';
 import VideoPlayer from './VideoPlayer';
-import '../styles/Player.css'
+import '../../styles/Player.css'
 import { useState } from 'react';
 
 const VideoAsset = ({ createdAt, poster, name, sourceUrl }) => {
@@ -12,15 +12,23 @@ const VideoAsset = ({ createdAt, poster, name, sourceUrl }) => {
     const openVideo = () => {
         setPlayerOpen(true)
     }
-    const closeVideo = () => {
-        setPlayerOpen(false)
+    const closeVideo = (e) => {
+        if (
+            e.target.className === "modalOverlay" ||
+            e.target.className === "close-btn" ||
+            e.target.className === "modal-btn modal-cancel-btn"
+        ) {
+            setPlayerOpen(false)
+        }
     }
 
     return (
         <>
             <div className='asset video-asset' onClick={openVideo}>
                 <div className='asset__poster'>
-                    <PlayButton />
+                    <figure name={'play'}>
+                        <button></button>
+                    </figure>
                     <Poster src={poster} alt={name} />
                 </div>
                 <div className='asset__info'>
@@ -32,6 +40,7 @@ const VideoAsset = ({ createdAt, poster, name, sourceUrl }) => {
                 isOpen={isPlayerOpen}
                 url={sourceUrl}
                 onCancel={closeVideo}
+                title={name}
             />
         </>
     )

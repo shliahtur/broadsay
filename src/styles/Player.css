@@ -10,7 +10,7 @@ figure {
     transform: translate(-50%,-50%);
   }
   
-  figure button[name="play"] {
+  figure[name="play"] button, figure[name="pause"] button {
     width: 3rem;
     height: 3rem;
     background: red;
@@ -19,13 +19,25 @@ figure {
     margin: auto;
     cursor: pointer;
   }
-  figure button[name="play"]:focus {
-    outline: 0;
-    border: 1px solid hsl(210, 58%, 69%);
-    box-shadow: 0 0 0 3px hsla(210, 76%, 57%, 0.5);
+  figure[name="pause"]{
+    visibility: hidden;
   }
-  
-  figure button[name="play"]::after {
+  figure[name="pause"] button{
+    background: #b7b7b7a6;
+  }
+  figure[name="play"] button:focus, figure[name="pause"] button:focus {
+    outline: 0;
+    box-shadow: 0 0 2px 5px hsl(0deg 0% 0% / 11%);
+  }
+
+  figure[name="pause"] button::after {
+    content: '';
+    position: relative;
+    border-style: double;
+    border-width: 0px 0px 0px 16px;
+  }
+
+  figure[name="play"] button::after {
     content: '';
     display: inline-block;
     position: relative;
@@ -42,6 +54,7 @@ figure {
     top: 20px;
     width: 20px;
     height: 20px;
+    z-index: 3;
 }
 
 .close-btn:before, .close-btn:after {
@@ -50,7 +63,7 @@ figure {
     top: 50%;
     left: 50%;
     height: 20px;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
 .close-btn:before {
@@ -61,7 +74,7 @@ figure {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 .modalOverlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -75,7 +88,7 @@ figure {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #FFF;
+    background-color: black;
     min-height: 200px;
     width: 500px;
     display: flex;
@@ -85,9 +98,14 @@ figure {
   .modal-header{
     height: 3rem;
   }
-  .modal-body{
-    padding: 2rem;
+  .modalBody figure button{
+    width: 4rem;
+    height: 4rem;
   }
   video{
     width: 100%;
+  }
+
+  .modalBody:hover  figure[name="pause"]{
+    visibility: visible;
   }
